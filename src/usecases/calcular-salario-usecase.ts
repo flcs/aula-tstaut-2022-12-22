@@ -1,5 +1,6 @@
 import { Funcionario } from "@/entities/funcionario";
-import { IRepository } from "@/repositories/irepository";
+import { IRepositoryCreate, IRepositoryDelete, IRepositoryFindAll, IRepositoryFindById, IRepositoryUpdate } 
+    from "@/repositories/irepository";
 import { IUseCase } from "./iusecase";
 
 type CalcularSalarioUseCaseParams = {
@@ -15,9 +16,11 @@ type CalcularSalarioUseCaseResult = {
 export class CalcularSalarioUseCase implements IUseCase<
     CalcularSalarioUseCaseParams, CalcularSalarioUseCaseResult> {
 
-    repositorio: IRepository<Funcionario>;
+    repositorio: IRepositoryFindById<Funcionario> 
+                & IRepositoryCreate<Funcionario>;
 
-    constructor(repoFuncionario: IRepository<Funcionario>) {
+    constructor(repoFuncionario: IRepositoryCreate<Funcionario> 
+                & IRepositoryFindById<Funcionario>) {
         this.repositorio = repoFuncionario;
     }
 
