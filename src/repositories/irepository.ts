@@ -4,7 +4,7 @@ export interface IRepositoryCreate<ClasseAssociada> {
 }
 
 export interface IRepositoryFindById<ClasseAssociada> {
-    findById(id: string): Promise<ClasseAssociada>
+    findById(id: string): Promise<ClasseAssociada | undefined>
 }
 
 export interface IRepositoryFindAll<ClasseAssociada> {
