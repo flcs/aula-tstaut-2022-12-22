@@ -18,3 +18,11 @@ export interface IRepositoryUpdate<ClasseAssociada> {
 export interface IRepositoryDelete<ClasseAssociada> {
     delete(id: string): Promise<boolean>;
 }
+
+
+export type IRepository<ClasseAssociada> =
+    IRepositoryCreate<ClasseAssociada> |
+    IRepositoryFindById<ClasseAssociada> |
+    IRepositoryFindAll<ClasseAssociada> |
+    IRepositoryDelete<ClasseAssociada> |
+    IRepositoryUpdate<ClasseAssociada>

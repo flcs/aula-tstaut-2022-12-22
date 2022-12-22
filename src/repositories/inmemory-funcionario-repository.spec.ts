@@ -5,8 +5,8 @@
 // fluxos alternativos (erros, condições paralelas, ...)
 // 
 
-import { Funcionario } from "../entities/funcionario";
-import { InMemoryFuncionarioRepo } from "./inmemory-funcionario-repository"
+import { Funcionario } from "@/entities/funcionario";
+import { InMemoryFuncionarioRepo } from "./inmemory-funcionario-repository";
 
 describe('Funcionario Repository Create', () => {
 
@@ -53,15 +53,15 @@ describe('Funcionario Repository Create', () => {
 
         await expect(
             // Promise.reject(new Error('octopus'))
-            sut.create(funcionario2) 
+            sut.create(funcionario2)
         ).rejects.toThrow('objeto já salvo');
     })
 
 })
 
-describe('Repositório Funcionario - findById', () =>{
+describe('Repositório Funcionario - findById', () => {
 
-    it('deveria ser capaz de encontrar um objeto já criado', async() =>{
+    it('deveria ser capaz de encontrar um objeto já criado', async () => {
 
         const sut = new InMemoryFuncionarioRepo();
         const funcionario = new Funcionario();
