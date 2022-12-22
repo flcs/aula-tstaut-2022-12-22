@@ -10,7 +10,7 @@
     //   "@/tests/*": ["../tests/*"],
     //   "@/*": ["*"]
     // },
-    // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
+    "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
     "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
     // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
@@ -28,6 +28,6 @@
     "strictPropertyInitialization": false,             /* Check for class properties that are declared but not set in the constructor. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src", "tests"],
-  "exclude": []
+  // "include": ["src", "tests"],
+  // "exclude": []
 }
