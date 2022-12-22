@@ -1,0 +1,56 @@
+# Caso de uso: calcular imposto de renda
+
+# Caso de uso: calcular férias
+
+# Caso de uso: calcular hora extra dobrada (2x)
+
+# Caso de uso: >> calcular faltas (Weriks)
+
+## fluxo : feliz
+- receber como parametro ....
+- acessa no repositorio e encontar o Id do funcionario
+- calcular x% do salario do funcionario
+- devove o valor do salario 
+
+## fluxo: não encontrado o funcionario no Repositório
+- retora uma exception funcionario não encontrado
+
+
+
+
+# Caso de uso: calcular contribuição sindical
+
+## fluxo: 
+## fluxo: 
+## fluxo: 
+
+# Caso de uso: calcular inss
+
+## fluxo: 
+## fluxo: 
+## fluxo: 
+
+# Caso de uso: calcular doença durante uma parte do mês (10 dias)
+
+## fluxo: 
+## fluxo: 
+## fluxo: 
+
+# Caso de uso: calcular fgts
+
+## fluxo: 
+## fluxo: 
+## fluxo: 
+
+# Caso de uso: calcular 13º salário (havendo um adiantamento de 50% anterior)
+
+## fluxo: 
+## fluxo: 
+## fluxo: 
+
+# Caso de uso: calcular imposto de renda sobre o 13º salário
+
+## fluxo: 
+## fluxo: 
+## fluxo: 
+
