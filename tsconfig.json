@@ -4,12 +4,12 @@
     "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
     "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
     "module": "commonjs",                                /* Specify what module code is generated. */
-    "rootDirs": ["./src", "test"],                                  /* Specify the root folder within your source files. */
+    "rootDir": "./src",                                  /* Specify the root folder within your source files. */
     "baseUrl": "./src",                                  /* Specify the base directory to resolve non-relative module names. */
-    "paths": {
-      "@/tests/*": ["../tests/*"],
-      "@/*": ["*"]
-    },
+    // "paths": {
+    //   "@/tests/*": ["../tests/*"],
+    //   "@/*": ["*"]
+    // },
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
     "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
