@@ -6,14 +6,14 @@
 // 
 
 import { Funcionario } from "../entities/funcionario";
-import { InMemoryFuncionarioRepoCreate } from "./inmemory-funcionario-repository"
+import { InMemoryFuncionarioRepo } from "./inmemory-funcionario-repository"
 
 describe('Funcionario Repository Create', () => {
 
     it('deveria ser capaz de criar um funcionario (happy path)', async () => {
         // arrange (setup)
         // const sut = new AlgumaCoisa();
-        const sut = new InMemoryFuncionarioRepoCreate();
+        const sut = new InMemoryFuncionarioRepo();
         const funcionario = new Funcionario();
 
         // act (perform action)
@@ -26,7 +26,7 @@ describe('Funcionario Repository Create', () => {
     })
 
     it('deveria ser capaz de encontrar um objeto já foi criado', async () => {
-        const sut = new InMemoryFuncionarioRepoCreate();
+        const sut = new InMemoryFuncionarioRepo();
         const funcionario = new Funcionario();
         funcionario.id = '0'
         const funcionario2 = funcionario;
@@ -36,13 +36,13 @@ describe('Funcionario Repository Create', () => {
         const id1 = await sut.create(funcionario);
         const existe = sut.existeObjeto(funcionario2)
 
-        expect(existe).toBe(true)
+        expect(existe >= 0).toBe(true)
     })
 
     it('não deveria ser capaz de incluir um mesmo funcionario duas vezes', async () => {
         // arrange (setup)
         // const sut = new AlgumaCoisa();
-        const sut = new InMemoryFuncionarioRepoCreate();
+        const sut = new InMemoryFuncionarioRepo();
         const funcionario = new Funcionario();
         funcionario.id = '1'
         const funcionario2 = funcionario;
@@ -57,5 +57,19 @@ describe('Funcionario Repository Create', () => {
         ).rejects.toThrow('objeto já salvo');
     })
 
+})
+
+describe('Repositório Funcionario - findById', () =>{
+
+    it('deveria ser capaz de encontrar um objeto já criado', async() =>{
+
+        const sut = new InMemoryFuncionarioRepo();
+        const funcionario = new Funcionario();
+        funcionario.nome = 'vinicius'
+
+        const id = await sut.create(funcionario)
+
+        expect(sut.findById('0')).toBeTruthy()
+    })
 })
 
