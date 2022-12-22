@@ -11,9 +11,9 @@
     "dev:debug": "tsnd --debug --respawn src",
     "dev": "tsnd --respawn src",
     "jest": "jest",
-    "test": "vitest --watch --coverage",
-    "test:unit": "vitest --watch --coverage -c vite.config-unit.ts",
-    "test:int": "vitest --watch --coverage -c vite.config-int.ts"
+    "test": "vitest --coverage",
+    "test:unit": "vitest --coverage -c vite.config-unit.ts",
+    "test:int": "vitest --coverage -c vite.config-int.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.15",
