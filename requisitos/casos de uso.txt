@@ -15,13 +15,16 @@
 ## fluxo: não encontrado o funcionario no Repositório
 - retora uma exception funcionario não encontrado
 
+# Caso de uso: calcular contribuição sindical (Weriks)
+### A contribuição sindical é paga pelo trabalhador uma vez por ano e corresponde à remuneração de um dia normal de trabalho (1/30 da remuneração mensal), sem inclusão de horas extras. Fonte: Agência Senado (https://www12.senado.leg.br/noticias/entenda-o-assunto/contribuicao-sindical)
 
-
-
-# Caso de uso: calcular contribuição sindical
-
-## fluxo: 
-## fluxo: 
+## fluxo: esperado
+- recebe o funcionário como parâmetro
+- acessa o DB e busque o funcionário pelo ID
+- calcule a valor da contribuição
+- retorna o valor a ser contribuído
+## fluxo: falha esperada
+- não econtrar funcionário no DB
 ## fluxo: 
 
 # Caso de uso: calcular inss
