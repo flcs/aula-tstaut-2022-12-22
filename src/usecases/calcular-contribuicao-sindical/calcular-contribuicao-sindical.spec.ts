@@ -42,12 +42,12 @@ describe('caso de uso calcular contribuição sindical', () => {
     const funcionario = new Funcionario()
     funcionario.salario = 1500
     inMemoryFuncionarioRepo.create(funcionario)
-    const params: CalcularContribuicaoSindicalUseCaseParams = {
+    const params = {
       funcionarioId: '0'
     }
     const sut = new CalcularContribuicaoSindicalUseCase(inMemoryFuncionarioRepo)
     // action
-    const { contribuicaoSindical }: CalcularContribuicaoSindicalUseCaseResult = await sut.perform(params)
+    const { contribuicaoSindical } = await sut.perform(params)
     // assert
     // 1500 / 30 => 50
     expect(contribuicaoSindical).toBe(50)
