@@ -7,6 +7,14 @@
 import { Funcionario } from '@/entities/funcionario'
 import { InMemoryFuncionarioRepo } from '@/repositories/inmemory-funcionario-repository'
 
+type CalcularContribuicaoSindicalUseCaseParams = {
+  funcionarioId: string
+}
+
+type CalcularContribuicaoSindicalUseCaseResult = {
+  contribuicaoSindical: number
+}
+
 describe('caso de uso calcular contribuição sindical', () => {
   it('deveria calcular a contribuição sindical de um funcionário', async () => {
     // arrange
@@ -14,12 +22,12 @@ describe('caso de uso calcular contribuição sindical', () => {
     const funcionario = new Funcionario()
     funcionario.salario = 1500
     inMemoryFuncionarioRepo.create(funcionario)
-    const params = {
+    const params: CalcularContribuicaoSindicalUseCaseParams = {
       funcionarioId: '1'
     }
     const sut = new CalcularContribuicaoSindical()
     // action
-    const result = sut.perform(params)
+    const result: CalcularContribuicaoSindicalUseCaseResult = sut.perform(params)
     // assert
     // 1500 / 30 => 50
     expect(result.contribuicaoSindical).toBe(50)
