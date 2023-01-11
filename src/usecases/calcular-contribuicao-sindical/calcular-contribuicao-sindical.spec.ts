@@ -6,6 +6,7 @@
 
 import { Funcionario } from '@/entities/funcionario'
 import { InMemoryFuncionarioRepo } from '@/repositories/inmemory-funcionario-repository'
+import { IRepositoryFindById } from '@/repositories/irepository'
 import { IUseCase } from '../iusecase'
 
 type CalcularContribuicaoSindicalUseCaseParams = {
@@ -18,8 +19,19 @@ type CalcularContribuicaoSindicalUseCaseResult = {
 
 export class CalcularContribuicaoSindicalUseCase implements IUseCase<
 CalcularContribuicaoSindicalUseCaseParams, CalcularContribuicaoSindicalUseCaseResult> {
-  perform(params: CalcularContribuicaoSindicalUseCaseParams): Promise<CalcularContribuicaoSindicalUseCaseResult> {
-    throw new Error('Method not implemented.')
+  private repositorio: IRepositoryFindById<Funcionario>
+
+  constructor(repositorio: IRepositoryFindById<Funcionario>){
+    this.repositorio = repositorio
+  }
+
+  async perform(params: CalcularContribuicaoSindicalUseCaseParams): Promise<CalcularContribuicaoSindicalUseCaseResult> {
+    const DIAS_TRABALHADOS = 30
+    const funcionario = await this.repositorio.findById(params.funcionarioId)
+    // talvez colocar uma exception no método findById ao invés de permitir retorno de undefined?
+    if(!funcionario) throw new Error('Funcionario não encontrado')
+    const contribuicaoSindical = funcionario.salario / DIAS_TRABALHADOS
+    return { contribuicaoSindical }
   }
 }
 
@@ -33,11 +45,11 @@ describe('caso de uso calcular contribuição sindical', () => {
     const params: CalcularContribuicaoSindicalUseCaseParams = {
       funcionarioId: '0'
     }
-    const sut = new CalcularContribuicaoSindicalUseCase()
+    const sut = new CalcularContribuicaoSindicalUseCase(inMemoryFuncionarioRepo)
     // action
-    const result: CalcularContribuicaoSindicalUseCaseResult = sut.perform(params)
+    const { contribuicaoSindical }: CalcularContribuicaoSindicalUseCaseResult = await sut.perform(params)
     // assert
     // 1500 / 30 => 50
-    expect(result.contribuicaoSindical).toBe(50)
+    expect(contribuicaoSindical).toBe(50)
   })
 })
