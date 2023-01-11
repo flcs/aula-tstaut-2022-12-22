@@ -6,6 +6,7 @@
 
 import { Funcionario } from '@/entities/funcionario'
 import { InMemoryFuncionarioRepo } from '@/repositories/inmemory-funcionario-repository'
+import { IUseCase } from '../iusecase'
 
 type CalcularContribuicaoSindicalUseCaseParams = {
   funcionarioId: string
@@ -13,6 +14,13 @@ type CalcularContribuicaoSindicalUseCaseParams = {
 
 type CalcularContribuicaoSindicalUseCaseResult = {
   contribuicaoSindical: number
+}
+
+export class CalcularContribuicaoSindicalUseCase implements IUseCase<
+CalcularContribuicaoSindicalUseCaseParams, CalcularContribuicaoSindicalUseCaseResult> {
+  perform(params: CalcularContribuicaoSindicalUseCaseParams): Promise<CalcularContribuicaoSindicalUseCaseResult> {
+    throw new Error('Method not implemented.')
+  }
 }
 
 describe('caso de uso calcular contribuição sindical', () => {
@@ -23,9 +31,9 @@ describe('caso de uso calcular contribuição sindical', () => {
     funcionario.salario = 1500
     inMemoryFuncionarioRepo.create(funcionario)
     const params: CalcularContribuicaoSindicalUseCaseParams = {
-      funcionarioId: '1'
+      funcionarioId: '0'
     }
-    const sut = new CalcularContribuicaoSindical()
+    const sut = new CalcularContribuicaoSindicalUseCase()
     // action
     const result: CalcularContribuicaoSindicalUseCaseResult = sut.perform(params)
     // assert
