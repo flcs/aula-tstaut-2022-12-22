@@ -52,4 +52,18 @@ describe('caso de uso calcular contribuição sindical', () => {
     // 1500 / 30 => 50
     expect(contribuicaoSindical).toBe(50)
   })
+
+  it('deveria levantar uma exceção se funcionario não for encrontrado', async () => {
+    // arrange
+    const inMemoryFuncionarioRepo = new InMemoryFuncionarioRepo()
+    const funcionario = new Funcionario()
+    funcionario.salario = 1500
+    inMemoryFuncionarioRepo.create(funcionario)
+    const params = {
+      funcionarioId: '1'
+    }
+    const sut = new CalcularContribuicaoSindicalUseCase(inMemoryFuncionarioRepo)
+    // action
+    await expect(sut.perform(params)).rejects.toThrow('Funcionario não encontrado')
+  })
 })
