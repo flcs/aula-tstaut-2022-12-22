@@ -35,35 +35,40 @@ CalcularContribuicaoSindicalUseCaseParams, CalcularContribuicaoSindicalUseCaseRe
   }
 }
 
+type SutTypes = {
+  sut: CalcularContribuicaoSindicalUseCase
+  inMemoryFuncionarioRepo: InMemoryFuncionarioRepo
+  funcionario: Funcionario
+}
+
+const makeSut = (): SutTypes => {
+  const funcionario = new Funcionario()
+  const inMemoryFuncionarioRepo = new InMemoryFuncionarioRepo()
+  const sut = new CalcularContribuicaoSindicalUseCase(inMemoryFuncionarioRepo)
+  return {
+    funcionario,
+    inMemoryFuncionarioRepo,
+    sut
+  }
+}
+
 describe('caso de uso calcular contribuição sindical', () => {
+
   it('deveria calcular a contribuição sindical de um funcionário', async () => {
     // arrange
-    const inMemoryFuncionarioRepo = new InMemoryFuncionarioRepo()
-    const funcionario = new Funcionario()
+    const { funcionario, inMemoryFuncionarioRepo, sut } = makeSut()
     funcionario.salario = 1500
     inMemoryFuncionarioRepo.create(funcionario)
-    const params = {
-      funcionarioId: '0'
-    }
-    const sut = new CalcularContribuicaoSindicalUseCase(inMemoryFuncionarioRepo)
-    // action
-    const { contribuicaoSindical } = await sut.perform(params)
-    // assert
-    // 1500 / 30 => 50
-    expect(contribuicaoSindical).toBe(50)
+    const params = { funcionarioId: '0' }
+    const { contribuicaoSindical } = await sut.perform(params)   
+    expect(contribuicaoSindical).toBe(50) /* 1500 / 30 => 50 */
   })
 
   it('deveria levantar uma exceção se funcionario não for encrontrado', async () => {
-    // arrange
-    const inMemoryFuncionarioRepo = new InMemoryFuncionarioRepo()
-    const funcionario = new Funcionario()
+    const { funcionario, inMemoryFuncionarioRepo, sut } = makeSut()
     funcionario.salario = 1500
     inMemoryFuncionarioRepo.create(funcionario)
-    const params = {
-      funcionarioId: '1'
-    }
-    const sut = new CalcularContribuicaoSindicalUseCase(inMemoryFuncionarioRepo)
-    // action
+    const params = { funcionarioId: '1' }
     await expect(sut.perform(params)).rejects.toThrow('Funcionario não encontrado')
   })
 })
